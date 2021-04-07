@@ -16,11 +16,11 @@ Run_analysis.R executes the following sections of code to generate a tidy table 
 
 3. Merge the training and test data sets into one data set
   - Combine columns for test data
-  test_all <- cbind(subject_test, y_test, x_test)
+  > test_all <- cbind(subject_test, y_test, x_test)
   - Combine columns for train data
-  train_all <- cbind(subject_train, y_train, x_train)
+  > train_all <- cbind(subject_train, y_train, x_train)
   - Merge test and train data into one dataset
-  data_all <- rbind(test_all, train_all)
+  > data_all <- rbind(test_all, train_all)
 
 4. extracts only the measurements on the mean and standard deviation for each measurement. 
 mean_std <- select(data_all, subject, act_id, contains("mean", ignore.case = TRUE), contains("std", ignore.case = TRUE))
