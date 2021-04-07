@@ -36,11 +36,13 @@ Run_analysis.R executes the following sections of code to generate a tidy table 
   - Replace "Acc" with "acceleration"
   > names(mean_std) <- gsub("Acc", "acceleration", names(mean_std))
 
-#creates an independent tidy data set with the average of each variable for each activity and each subject.
-group_by_data <- mean_std %>% group_by(subject, act_id)
-new_data <- group_by_data %>% summarize_if(is.numeric, mean, na.rm = TRUE) 
+7. Create an independent tidy data set with the average of each variable for each activity and each subject
+  - Group data by subject and activity
+  > group_by_data <- mean_std %>% group_by(subject, act_id)
+  - Calculate the average value of all numeric columns and store it into a new data frame (new_data)
+  > new_data <- group_by_data %>% summarize_if(is.numeric, mean, na.rm = TRUE) 
       
-#write the tidy data to a text file.
-filename <- paste0(filepath, "new_tidy.txt")
-write.table(new_data,filename, row.name = FALSE)
+8. Write the tidy data to a text file named as "new_tidy.txt"
+  > filename <- paste0(filepath, "new_tidy.txt")
+  > write.table(new_data,filename, row.name = FALSE)
 
