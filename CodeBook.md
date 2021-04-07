@@ -22,16 +22,19 @@ Run_analysis.R executes the following sections of code to generate a tidy table 
   - Merge test and train data into one dataset
   > data_all <- rbind(test_all, train_all)
 
-4. extracts only the measurements on the mean and standard deviation for each measurement. 
-mean_std <- select(data_all, subject, act_id, contains("mean", ignore.case = TRUE), contains("std", ignore.case = TRUE))
+4. Extracts only the measurements on the mean and standard deviation for each measurement and store them into a new dataframe (mean_std) 
+  > mean_std <- select(data_all, subject, act_id, contains("mean", ignore.case = TRUE), contains("std", ignore.case = TRUE))
 
-#uses descriptive activity names to name the activities in the data set
-mean_std$act_id <- activities$activity[mean_std$act_id]
+5. Use descriptive activity names to name the activities in the data set
+  > mean_std$act_id <- activities$activity[mean_std$act_id]
 
-#appropriately labels the data set with descriptive variable names. 
-names(mean_std) <- gsub("^t", "time", names(mean_std))
-names(mean_std) <- gsub("^f", "frequency", names(mean_std))
-names(mean_std) <- gsub("Acc", "acceleration", names(mean_std))
+6. Appropriately labels the data set with descriptive variable names
+  - Replace "t" at the beginning with "time"
+  > names(mean_std) <- gsub("^t", "time", names(mean_std))
+  - Replace "f" at the beginning with "frequency" 
+  > names(mean_std) <- gsub("^f", "frequency", names(mean_std))
+  - Replace "Acc" with "acceleration"
+  > names(mean_std) <- gsub("Acc", "acceleration", names(mean_std))
 
 #creates an independent tidy data set with the average of each variable for each activity and each subject.
 group_by_data <- mean_std %>% group_by(subject, act_id)
