@@ -1,6 +1,6 @@
 ### Code Book ###
 
-Run_analysis.R executes the following sections of code to generate a tidy table with the averages of each variable for each activity and each subject. 
+Run_analysis.R executes the following sections of code to generate a tidy table with the averages of all numeric variables in the table for each activity and each subject. 
 
 1. Download a file from URL and unzip data file
 
